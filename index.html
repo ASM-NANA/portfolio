@@ -20,11 +20,8 @@
     --light:  #E8E8F0;
     --white:  #F4F4FA;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--ink);
     color: var(--light);
@@ -33,411 +30,185 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
-
-  /* ── GRAIN OVERLAY ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.35;
+    pointer-events: none; z-index: 9999; opacity: 0.35;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.2rem 4rem;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(10,10,15,0.88);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    color: var(--red);
-    text-transform: uppercase;
-  }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.25em; color: var(--red); text-transform: uppercase; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.3s;
-  }
+  .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .nav-links a:hover { color: var(--white); }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 4rem 6rem;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
-
   .hero-grid {
     position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(200,16,46,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,16,46,0.04) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(200,16,46,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,16,46,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
   }
+  .hero-accent { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,16,46,0.12) 0%, transparent 70%); top: -100px; right: -100px; border-radius: 50%; animation: pulse 6s ease-in-out infinite; }
+  .hero-accent2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(184,150,12,0.06) 0%, transparent 70%); bottom: 0; left: 200px; border-radius: 50%; animation: pulse 8s ease-in-out infinite reverse; }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
 
-  .hero-accent {
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,16,46,0.12) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    border-radius: 50%;
-    animation: pulse 6s ease-in-out infinite;
-  }
-  .hero-accent2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(184,150,12,0.06) 0%, transparent 70%);
-    bottom: 0; left: 200px;
-    border-radius: 50%;
-    animation: pulse 8s ease-in-out infinite reverse;
-  }
-
-  @keyframes pulse {
-    0%,100% { transform: scale(1); opacity: 1; }
-    50%      { transform: scale(1.1); opacity: 0.7; }
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.3em;
-    color: var(--red); text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    font-weight: 600; line-height: 1.0;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6.5vw, 6.5rem); font-weight: 600; line-height: 1.0; color: var(--white); letter-spacing: -0.02em; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
   .hero-name span { color: var(--red); }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
-    font-weight: 300;
-    color: var(--gold);
-    margin-top: 0.5rem;
-    letter-spacing: 0.05em;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-desc {
-    max-width: 580px;
-    margin-top: 1.5rem;
-    font-size: 0.92rem;
-    color: var(--muted);
-    line-height: 1.8;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .hero-cta {
-    display: flex; gap: 1rem; margin-top: 2.5rem;
-    opacity: 0; animation: fadeUp 0.8s 1s forwards;
-  }
-  .btn {
-    padding: 0.75rem 2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--red);
-    color: var(--red);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: inline-block;
-  }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2.2vw, 1.6rem); font-weight: 300; color: var(--gold); margin-top: 0.6rem; letter-spacing: 0.05em; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+  .hero-desc { max-width: 600px; margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); line-height: 1.9; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .hero-desc strong { color: var(--light); font-weight: 400; }
+  .hero-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .hero-badge { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid rgba(200,16,46,0.3); color: var(--red); }
+  .hero-cta { display: flex; gap: 1rem; margin-top: 2rem; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+  .btn { padding: 0.75rem 2rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--red); color: var(--red); background: transparent; cursor: pointer; transition: all 0.3s; display: inline-block; }
   .btn:hover { background: var(--red); color: var(--white); }
   .btn-solid { background: var(--red); color: var(--white); }
   .btn-solid:hover { background: var(--red-dim); border-color: var(--red-dim); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SECTION COMMON ── */
+  /* SECTIONS */
   section { padding: 7rem 4rem; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 3.5rem; }
 
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 600; color: var(--white);
-    line-height: 1.1; margin-bottom: 3.5rem;
-  }
-
-  /* ── ABOUT ── */
+  /* ABOUT */
   #about { background: var(--ink2); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-    align-items: start;
-  }
-  .about-text p {
-    font-size: 0.93rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.9;
-  }
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.9; }
   .about-text p strong { color: var(--light); font-weight: 400; }
-
-  .skills-list {
-    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
-  }
-  .skill-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.1em;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid var(--border);
-    color: var(--muted); text-transform: uppercase;
-    transition: all 0.3s;
-  }
+  .about-text .highlight-box { border-left: 2px solid var(--gold); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(184,150,12,0.04); }
+  .about-text .highlight-box p { margin: 0; font-style: italic; color: #8A8A6A; font-size: 0.85rem; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .skill-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; padding: 0.35rem 0.85rem; border: 1px solid var(--border); color: var(--muted); text-transform: uppercase; transition: all 0.3s; }
   .skill-tag:hover { border-color: var(--red); color: var(--red); }
+  .about-right { display: flex; flex-direction: column; gap: 1.5rem; }
+  .stat { border-left: 2px solid var(--red); padding-left: 1.5rem; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+  .fablab-note { border: 1px solid rgba(184,150,12,0.2); background: rgba(184,150,12,0.04); padding: 1.2rem; margin-top: 1rem; }
+  .fablab-note-title { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .fablab-note-text { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
 
-  .about-stats { display: flex; flex-direction: column; gap: 2rem; }
-  .stat {
-    border-left: 2px solid var(--red);
-    padding-left: 1.5rem;
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 700; color: var(--white);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); margin-top: 0.3rem;
-  }
-
-  /* ── PROJECTS ── */
+  /* PROJECTS */
   #projects { background: var(--ink); }
+  .projects-filter { display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .filter-btn { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 1rem; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.3s; }
+  .filter-btn.active, .filter-btn:hover { border-color: var(--red); color: var(--red); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2px; }
 
-  .projects-filter {
-    display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
-  }
-  .filter-btn {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 0.45rem 1.1rem; border: 1px solid var(--border);
-    background: transparent; color: var(--muted); cursor: pointer;
-    transition: all 0.3s;
-  }
-  .filter-btn.active, .filter-btn:hover {
-    border-color: var(--red); color: var(--red);
-  }
-
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5px;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-    position: relative; overflow: hidden;
-    cursor: pointer;
-  }
-  .project-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: var(--red);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .project-card:hover { background: #20202E; transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .project-card { background: var(--card); border: 1px solid var(--border); padding: 0; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; }
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; z-index: 2; }
+  .project-card:hover { background: #1E1E30; transform: translateY(-5px); box-shadow: 0 24px 70px rgba(0,0,0,0.5); }
   .project-card:hover::before { transform: scaleX(1); }
 
-  .project-type {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .project-type::before {
-    content: ''; display: inline-block;
-    width: 20px; height: 1px; background: var(--red);
-  }
+  .project-status { position: absolute; top: 1rem; right: 1rem; z-index: 3; font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.6rem; }
+  .status-done { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; }
+  .status-progress { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); color: #fbbf24; }
 
-  .project-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 600; color: var(--white);
-    line-height: 1.2; margin-bottom: 0.75rem;
-  }
+  .project-inner { padding: 2rem; }
+  .project-type { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+  .project-type::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--red); }
+  .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 0.75rem; }
+  .project-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.2rem; }
+  .project-desc strong { color: var(--light); font-weight: 400; }
 
-  .project-desc {
-    font-size: 0.82rem; color: var(--muted); line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
+  /* What was done list */
+  .project-done { list-style: none; margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .project-done li { font-size: 0.78rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.6; }
+  .project-done li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-size: 0.7rem; }
 
-  .project-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
-  }
-  .project-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.25rem 0.6rem;
-    background: rgba(200,16,46,0.08);
-    border: 1px solid rgba(200,16,46,0.15);
-    color: var(--red);
-  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.4rem; }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.55rem; background: rgba(200,16,46,0.07); border: 1px solid rgba(200,16,46,0.15); color: var(--red); }
 
-  .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .project-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid var(--border);
-    color: var(--muted); text-decoration: none;
-    transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.4rem;
-  }
+  .project-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .project-link { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.38rem 0.85rem; border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.4rem; }
   .project-link:hover { border-color: var(--red); color: var(--red); }
-  .project-link svg { width: 12px; height: 12px; }
+  .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .project-link.placeholder { opacity: 0.45; cursor: default; pointer-events: none; border-style: dashed; }
 
-  /* Media embed area */
-  .project-media {
-    background: rgba(0,0,0,0.3);
-    border: 1px dashed rgba(200,16,46,0.2);
-    height: 160px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    margin-bottom: 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; color: var(--muted); text-align: center;
-    gap: 0.5rem;
-  }
-  .project-media-icon { font-size: 1.5rem; opacity: 0.4; }
-  .project-media-text { letter-spacing: 0.1em; text-transform: uppercase; }
+  /* Media zone */
+  .project-media-zone { width: 100%; height: 180px; background: rgba(0,0,0,0.35); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; position: relative; overflow: hidden; }
+  .project-media-zone .media-icon { font-size: 2rem; opacity: 0.25; }
+  .project-media-zone .media-hint { font-size: 0.58rem; opacity: 0.5; margin-top: 0.2rem; }
 
-  /* ── EDUCATION ── */
+  /* Roadmap / In Progress */
+  .roadmap-section { margin-top: 4rem; border: 1px solid var(--border); padding: 2.5rem; background: var(--card); }
+  .roadmap-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+  .roadmap-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+  .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .roadmap-item { border: 1px dashed rgba(200,16,46,0.2); padding: 1.2rem; }
+  .roadmap-item-icon { font-size: 1.2rem; margin-bottom: 0.6rem; }
+  .roadmap-item-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 0.4rem; }
+  .roadmap-item-eta { font-size: 0.72rem; color: var(--muted); }
+
+  /* EDUCATION */
   #education { background: var(--ink2); }
   .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 1px; background: var(--border);
-  }
-  .timeline-item {
-    position: relative; margin-bottom: 3rem;
-    padding-left: 2rem;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute; left: -2.4rem; top: 0.4rem;
-    width: 8px; height: 8px;
-    background: var(--red); border-radius: 50%;
-  }
-  .timeline-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.4rem;
-  }
-  .timeline-school {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-weight: 600; color: var(--white);
-  }
-  .timeline-degree {
-    font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem;
-  }
-  .timeline-note {
-    font-size: 0.8rem; color: var(--muted);
-    margin-top: 0.7rem; font-style: italic;
-  }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -2.4rem; top: 0.4rem; width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
+  .timeline-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+  .timeline-school { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); }
+  .timeline-degree { font-size: 0.84rem; color: var(--muted); margin-top: 0.3rem; }
+  .timeline-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.7rem; line-height: 1.7; }
+  .timeline-note li { margin-left: 1rem; margin-top: 0.2rem; }
 
-  /* ── CONTACT ── */
+  /* Fablab */
+  .fablab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .fablab-card { border: 1px solid var(--border); padding: 1.8rem; background: var(--card); }
+  .fablab-card-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .fablab-card-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
+  .fablab-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
+  /* CONTACT */
   #contact { background: var(--ink); text-align: center; }
-  .contact-inner { max-width: 600px; margin: 0 auto; }
-  .contact-big {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 600; color: var(--white); line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-  .contact-sub {
-    font-size: 0.88rem; color: var(--muted); margin-bottom: 2.5rem;
-  }
-  .contact-items {
-    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  .contact-item {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.3s;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
+  .contact-inner { max-width: 620px; margin: 0 auto; }
+  .contact-big { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
+  .contact-sub { font-size: 0.87rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8; }
+  .contact-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+  .contact-item { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; }
   .contact-item:hover { color: var(--red); }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: var(--ink);
-  }
-  .footer-copy {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted);
-  }
-  .footer-mark {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; color: var(--red); letter-spacing: 0.1em;
-  }
-
-  /* ── DIVIDER ── */
-  .red-line {
-    width: 60px; height: 2px; background: var(--red); margin-bottom: 1.2rem;
-  }
-
-  /* ── NOTION NOTE ── */
-  .notion-note {
-    background: rgba(200,16,46,0.05);
-    border: 1px solid rgba(200,16,46,0.2);
-    border-left: 3px solid var(--red);
-    padding: 1rem 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em;
-    margin-bottom: 3rem;
-  }
-  .notion-note strong { color: var(--red); }
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--ink); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .footer-mark { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--red); letter-spacing: 0.1em; }
 
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
     section { padding: 5rem 1.5rem; }
     .hero { padding: 0 1.5rem 4rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .fablab-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">N. A. S. Moubarak</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
+    <li><a href="#education">Background</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -447,78 +218,89 @@
   <div class="hero-grid"></div>
   <div class="hero-accent"></div>
   <div class="hero-accent2"></div>
-
-  <div class="hero-eyebrow">Portfolio · Electrical Engineering · AI & Automation</div>
+  <div class="hero-eyebrow">Portfolio · Génie Électrique · Mécatronique · IA Industrielle</div>
   <h1 class="hero-name">NANA Abdoul<br>Salam <span>Moubarak</span></h1>
-  <p class="hero-title">Engineer at the Intersection of Intelligent Systems & Industrial Automation</p>
+  <p class="hero-title">Builder of Intelligent Systems — From Circuit to Intelligence</p>
   <p class="hero-desc">
-    Electrotechnical engineer with a strong foundation in power systems and mechatronics,
-    now converging toward <strong style="color:var(--light)">AI-driven industrial automation</strong>. 
-    Passionate about deploying machine intelligence to transform real-world industrial processes — 
-    from smart motor control to predictive maintenance and autonomous manufacturing systems.
+    Electrical engineer with a hands-on background in <strong>power electronics, embedded systems, and mechatronics</strong>.
+    Autodidact and maker, I design and build real physical systems — laser CNC machines, weather stations, drone flight controllers —
+    driven by a passion for merging hardware precision with software intelligence.
+    My next frontier: <strong>AI applied to industrial automation</strong>.
   </p>
+  <div class="hero-badges">
+    <span class="hero-badge">CNC Laser Machine — Built</span>
+    <span class="hero-badge">Drone PCB — In Progress</span>
+    <span class="hero-badge">Orange Digital Center</span>
+    <span class="hero-badge">Wakatlab</span>
+  </div>
   <div class="hero-cta">
-    <a href="#projects" class="btn btn-solid">View Projects</a>
-    <a href="#contact" class="btn">Get in Touch</a>
+    <a href="#projects" class="btn btn-solid">Voir mes Projets</a>
+    <a href="#contact" class="btn">Me Contacter</a>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label">01 — Who I Am</div>
-  <h2 class="section-title">Background &<br>Expertise</h2>
-
+  <div class="section-label">01 — Qui suis-je</div>
+  <h2 class="section-title">Profil &<br>Compétences</h2>
   <div class="about-grid">
     <div class="about-text">
       <p>
-        I hold a degree in <strong>Electrical Engineering — Electrotechnics option</strong>, 
-        with hands-on experience in power electronics, motor drives, and embedded control systems.
-        My recent projects have pushed me into the exciting frontier of <strong>mechatronics</strong> — 
-        blending mechanical, electrical, and software intelligence into unified systems.
+        Titulaire d'une <strong>Licence en Génie Électrique — option Électrotechnique</strong>,
+        je me suis progressivement orienté vers la mécatronique et les systèmes embarqués,
+        animé par une curiosité profonde pour les machines qui pensent et s'adaptent.
       </p>
       <p>
-        My ambition is to pursue a <strong>Master's in AI Applied to Industrial Automation</strong>, 
-        building on my engineering foundation to develop autonomous, data-driven industrial solutions.
-        I am particularly interested in machine learning for predictive maintenance, 
-        computer vision for quality control, and intelligent control for smart manufacturing.
+        En l'absence de stages formels, j'ai choisi de <strong>fabriquer plutôt qu'observer</strong> :
+        mes laboratoires ont été les fablabs — Orange Digital Center et Wakatlab à Ouagadougou.
+        C'est là que j'ai appris à prototyper, tester, déboguer et itérer sur des systèmes réels.
       </p>
+      <div class="highlight-box">
+        <p>
+          "Each project I build is a deliberate step toward a research career in intelligent industrial systems.
+          I learn by doing — and I document everything."
+        </p>
+      </div>
       <p>
-        I thrive at the intersection of theory and practice — prototyping systems that are both 
-        mathematically rigorous and physically deployable in real industrial environments.
+        Mon ambition est de rejoindre un programme de <strong>Master en IA Appliquée à l'Automatisation Industrielle</strong>
+        (Tsinghua / Zhejiang / HIT), pour donner une dimension scientifique et computationnelle
+        à mon savoir-faire terrain.
       </p>
-
       <div class="skills-list">
-        <span class="skill-tag">Power Electronics</span>
-        <span class="skill-tag">Motor Drives</span>
-        <span class="skill-tag">Embedded Systems</span>
-        <span class="skill-tag">PLC Programming</span>
-        <span class="skill-tag">Machine Learning</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">MATLAB / Simulink</span>
-        <span class="skill-tag">Mechatronics</span>
-        <span class="skill-tag">Computer Vision</span>
-        <span class="skill-tag">Control Systems</span>
-        <span class="skill-tag">Arduino / STM32</span>
-        <span class="skill-tag">AutoCAD Electrical</span>
+        <span class="skill-tag">Électrotechnique</span>
+        <span class="skill-tag">Électronique de puissance</span>
+        <span class="skill-tag">Systèmes embarqués</span>
+        <span class="skill-tag">Arduino / IDE</span>
+        <span class="skill-tag">Proteus (simulation)</span>
+        <span class="skill-tag">SolidWorks</span>
+        <span class="skill-tag">Conception PCB</span>
+        <span class="skill-tag">GRBL / CNC</span>
+        <span class="skill-tag">Capteurs & Actionneurs</span>
+        <span class="skill-tag">Python (en cours)</span>
+        <span class="skill-tag">MATLAB (bases)</span>
+        <span class="skill-tag">Prototypage rapide</span>
       </div>
     </div>
-
-    <div class="about-stats">
+    <div class="about-right">
       <div class="stat">
-        <div class="stat-num">[ X ]</div>
-        <div class="stat-label">Engineering Projects Completed</div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Projets physiques réalisés / en cours</div>
       </div>
       <div class="stat">
-        <div class="stat-num">[ X ]</div>
-        <div class="stat-label">Years of Engineering Studies</div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Années de Licence en Génie Électrique</div>
       </div>
       <div class="stat">
-        <div class="stat-num">[ X ]</div>
-        <div class="stat-label">Internship / Industrial Experience (months)</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Fablabs fréquentés intensivement</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">中文</div>
-        <div class="stat-label">Currently Learning Mandarin — HSK Target</div>
+      <div class="fablab-note">
+        <div class="fablab-note-title">⚗️ Approche terrain</div>
+        <div class="fablab-note-text">
+          Sans stage conventionnel, j'ai choisi les fablabs comme environnement de recherche appliquée.
+          Cette démarche autonome — concevoir, rater, corriger, réussir — forge une rigueur
+          que les seuls cours ne peuvent pas enseigner.
+        </div>
       </div>
     </div>
   </div>
@@ -526,234 +308,259 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">02 — Work</div>
-  <h2 class="section-title">Selected<br>Projects</h2>
+  <div class="section-label">02 — Réalisations</div>
+  <h2 class="section-title">Projets<br>Concrets</h2>
 
-  <div class="notion-note">
-    <strong>📎 Notion Import Guide</strong> — Replace each placeholder below with your actual media: 
-    drag & drop videos/photos directly into Notion blocks, paste GitHub links, or embed PDFs using 
-    the /embed command. Each card corresponds to one Notion page.
-  </div>
-
-  <!-- Filter -->
   <div class="projects-filter">
-    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProjects('mechatronics', this)">Mechatronics</button>
-    <button class="filter-btn" onclick="filterProjects('electrical', this)">Electrical</button>
-    <button class="filter-btn" onclick="filterProjects('ai', this)">AI / Software</button>
-    <button class="filter-btn" onclick="filterProjects('research', this)">Research</button>
+    <button class="filter-btn active" onclick="filterProjects('all',this)">Tous</button>
+    <button class="filter-btn" onclick="filterProjects('mecatronique',this)">Mécatronique</button>
+    <button class="filter-btn" onclick="filterProjects('electronique',this)">Électronique</button>
+    <button class="filter-btn" onclick="filterProjects('embarque',this)">Embarqué</button>
   </div>
 
   <div class="projects-grid" id="projects-grid">
 
-    <!-- PROJECT 1 -->
-    <div class="project-card" data-cat="mechatronics">
-      <div class="project-type">Mechatronics</div>
-      <div class="project-media">
-        <div class="project-media-icon">🎬</div>
-        <div class="project-media-text">Insert Project Video / Demo Here</div>
+    <!-- PROJECT 1 : CNC Laser -->
+    <div class="project-card" data-cat="mecatronique">
+      <span class="project-status status-done">✓ Terminé</span>
+      <div class="project-media-zone">
+        <div class="media-icon">🔧</div>
+        <div>Insérez ici : photos / vidéo de la machine CNC</div> 
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ORN65JEkuLk" title="Démonstration CNC Laser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 4px;"></iframe>
       </div>
-      <h3 class="project-title">[ Project Title 1 ]</h3>
-      <p class="project-desc">
-        Brief description of the project — what problem it solves, what technologies were used, 
-        what results were achieved. Keep it precise and quantified (e.g. "reduced positioning error by 40%").
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Arduino</span>
-        <span class="project-tag">Servo Control</span>
-        <span class="project-tag">Sensor Fusion</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          Report PDF
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Demo Video
-        </a>
-      </div>
-    </div>
-
-    <!-- PROJECT 2 -->
-    <div class="project-card" data-cat="electrical">
-      <div class="project-type">Electrical Engineering</div>
-      <div class="project-media">
-        <div class="project-media-icon">📸</div>
-        <div class="project-media-text">Insert Project Photos Here</div>
-      </div>
-      <h3 class="project-title">[ Project Title 2 ]</h3>
-      <p class="project-desc">
-        Brief description of the project — what problem it solves, what technologies were used, 
-        what results were achieved. Be specific about your individual contribution.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Power Electronics</span>
-        <span class="project-tag">MATLAB</span>
-        <span class="project-tag">Simulink</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          Report PDF
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Gallery
-        </a>
+      <div class="project-inner">
+        <div class="project-type">Mécatronique · CNC</div>
+        <h3 class="project-title">Machine CNC<br>Graveuse Laser</h3>
+        <p class="project-desc">
+          Conception et réalisation complète d'une machine CNC de gravure laser,
+          de la modélisation 3D à la mise en service physique.
+          Ce projet intègre <strong>mécanique, électronique et logiciel embarqué</strong>
+          en un système autonome et fonctionnel.
+        </p>
+        <ul class="project-done">
+          <li>Modélisation mécanique complète sur <strong>SolidWorks</strong></li>
+          <li>Simulation et schémas électroniques sur <strong>Proteus</strong></li>
+          <li>Câblage, assemblage et mise en service de la machine physique</li>
+          <li>Programmation du firmware (GRBL / Arduino)</li>
+          <li>Tests de gravure et calibration du laser</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">SolidWorks</span>
+          <span class="project-tag">Proteus</span>
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">GRBL</span>
+          <span class="project-tag">Stepper Motors</span>
+          <span class="project-tag">Laser Driver</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            Rapport PDF →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Vidéo démo →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Galerie SolidWorks →
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- PROJECT 3 -->
-    <div class="project-card" data-cat="ai">
-      <div class="project-type">AI / Software</div>
-      <div class="project-media">
-        <div class="project-media-icon">🤖</div>
-        <div class="project-media-text">Insert Demo / Screenshot Here</div>
+    <!-- PROJECT 2 : Météo -->
+    <div class="project-card" data-cat="embarque">
+      <span class="project-status status-done">✓ Terminé</span>
+      <div class="project-media-zone">
+        <div class="media-icon">🌦️</div>
+        <div>Insérez ici : photos du montage / schéma Proteus</div>
+        <div class="media-hint">Notion → /image · drag & drop</div>
       </div>
-      <h3 class="project-title">[ Project Title 3 — AI / ML ]</h3>
-      <p class="project-desc">
-        Brief description of the AI/ML component — dataset, model architecture, 
-        application domain (e.g. fault detection, predictive maintenance). 
-        Highlight key metrics (accuracy, F1 score, etc.).
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">TensorFlow / PyTorch</span>
-        <span class="project-tag">Industrial IoT</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          Report PDF
-        </a>
-      </div>
-    </div>
-
-    <!-- PROJECT 4 -->
-    <div class="project-card" data-cat="research">
-      <div class="project-type">Research / Thesis</div>
-      <div class="project-media">
-        <div class="project-media-icon">📄</div>
-        <div class="project-media-text">Insert Poster / Slides / Paper</div>
-      </div>
-      <h3 class="project-title">[ Final Year Thesis / Mémoire ]</h3>
-      <p class="project-desc">
-        Summary of your final year project / dissertation. State the research question, 
-        methodology, and main findings. Mention your supervisor and institution for credibility.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Research</span>
-        <span class="project-tag">Control Theory</span>
-        <span class="project-tag">Simulation</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          Full Thesis PDF
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          Presentation
-        </a>
+      <div class="project-inner">
+        <div class="project-type">Systèmes Embarqués · IoT</div>
+        <h3 class="project-title">Station<br>Météorologique</h3>
+        <p class="project-desc">
+          Conception et programmation d'une station météorologique autonome,
+          capable de mesurer et afficher en temps réel les conditions environnementales.
+          Ce projet démontre la maîtrise de <strong>l'acquisition de données capteurs,
+          de l'affichage et de la programmation embarquée</strong>.
+        </p>
+        <ul class="project-done">
+          <li>Conception du schéma électronique sur <strong>Proteus</strong></li>
+          <li>Programmation complète sur <strong>Arduino IDE</strong></li>
+          <li>Intégration capteurs : température, humidité, pression</li>
+          <li>Affichage temps réel sur écran LCD / OLED</li>
+          <li>Montage et test physique du prototype</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">Arduino IDE</span>
+          <span class="project-tag">Proteus</span>
+          <span class="project-tag">DHT22</span>
+          <span class="project-tag">BMP280</span>
+          <span class="project-tag">I2C / SPI</span>
+          <span class="project-tag">LCD</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Code Arduino →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Schéma Proteus →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            Rapport PDF →
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- PROJECT 5 -->
-    <div class="project-card" data-cat="mechatronics">
-      <div class="project-type">Mechatronics</div>
-      <div class="project-media">
-        <div class="project-media-icon">⚙️</div>
-        <div class="project-media-text">Insert Project Video / Photos</div>
+    <!-- PROJECT 3 : Drone PCB -->
+    <div class="project-card" data-cat="electronique">
+      <span class="project-status status-progress">⏳ En cours</span>
+      <div class="project-media-zone">
+        <div class="media-icon">🚁</div>
+        <div>Insérez ici : fichiers PCB / schéma du contrôleur</div>
+        <div class="media-hint">Notion → /file · PDF ou image du layout PCB</div>
       </div>
-      <h3 class="project-title">[ Project Title 5 ]</h3>
-      <p class="project-desc">
-        Description of another mechatronics project. Emphasize integration of 
-        electrical, mechanical, and software subsystems.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">STM32</span>
-        <span class="project-tag">CAN Bus</span>
-        <span class="project-tag">PID Control</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Demo Video
-        </a>
-      </div>
-    </div>
-
-    <!-- PROJECT 6 — Certification / Course Project -->
-    <div class="project-card" data-cat="ai">
-      <div class="project-type">Certification / Self-Learning</div>
-      <div class="project-media">
-        <div class="project-media-icon">🎓</div>
-        <div class="project-media-text">Insert Certificate / Badge</div>
-      </div>
-      <h3 class="project-title">[ Online Course Project / Certification ]</h3>
-      <p class="project-desc">
-        Coursework project from a MOOC or online course (Coursera, edX, fast.ai, etc.). 
-        Shows initiative and self-directed learning — highly valued by Chinese universities 
-        for international applicants.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Deep Learning</span>
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Coursera</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          Certificate PDF
-        </a>
-        <a href="#" class="project-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          Project Code
-        </a>
+      <div class="project-inner">
+        <div class="project-type">Électronique · Systèmes embarqués</div>
+        <h3 class="project-title">Contrôleur de Vol<br>Drone — PCB Custom</h3>
+        <p class="project-desc">
+          Conception from scratch du PCB d'un contrôleur de vol de drone.
+          Phase de conception hardware terminée ; la <strong>programmation du firmware
+          est en cours</strong>. Ce projet représente l'intégration la plus avancée
+          de mes compétences : électronique de puissance, traitement du signal et contrôle embarqué.
+        </p>
+        <ul class="project-done">
+          <li>Conception et routage complet du <strong>PCB du flight controller</strong></li>
+          <li>Sélection des composants : IMU (MPU-6050), régulateurs, ESC interface</li>
+          <li>Vérification des règles de conception (DRC)</li>
+          <li>Programmation firmware — <em>en cours (stabilisation PID)</em></li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">IMU / MPU-6050</span>
+          <span class="project-tag">PID Control</span>
+          <span class="project-tag">ESC</span>
+          <span class="project-tag">Firmware C/C++</span>
+          <span class="project-tag">STM32 / AVR</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub (WIP) →
+          </a>
+          <a href="#" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            Schéma PCB →
+          </a>
+        </div>
       </div>
     </div>
 
   </div>
+
+  <!-- ROADMAP -->
+  <div class="roadmap-section">
+    <div class="project-type" style="margin-bottom:0.5rem">Trajectoire · Prochaines étapes</div>
+    <h3 class="roadmap-title">Ce qui vient ensuite</h3>
+    <p class="roadmap-sub">Un plan clair, des jalons concrets. La progression est réelle et documentée.</p>
+    <div class="roadmap-grid">
+      <div class="roadmap-item">
+        <div class="roadmap-item-icon">🏁</div>
+        <div class="roadmap-item-title">Drone — firmware</div>
+        <div class="roadmap-item-eta">Finaliser la stabilisation PID · 2026</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-item-icon">🌐</div>
+        <div class="roadmap-item-title">TOEFL iBT</div>
+        <div class="roadmap-item-eta">Préparation & passage · objectif 2025–2026</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-item-icon">🈶</div>
+        <div class="roadmap-item-title">HSK 3–4</div>
+        <div class="roadmap-item-eta">Début apprentissage mandarin · 2026–2027</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-item-icon">🤖</div>
+        <div class="roadmap-item-title">Certification ML</div>
+        <div class="roadmap-item-eta">Coursera / fast.ai · Python & Deep Learning</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-item-icon">🎓</div>
+        <div class="roadmap-item-title">Master CSC</div>
+        <div class="roadmap-item-eta">Tsinghua · Zhejiang · HIT · candidature active</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- EDUCATION & FABLABS -->
 <section id="education">
-  <div class="section-label">03 — Formation</div>
-  <h2 class="section-title">Academic<br>Background</h2>
+  <div class="section-label">03 — Formation & Terrain</div>
+  <h2 class="section-title">Parcours<br>Académique</h2>
 
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-year">[ ANNÉE ] — [ ANNÉE ]</div>
-      <div class="timeline-school">[ Nom de ton École / Université ]</div>
-      <div class="timeline-degree">Licence / Master en Génie Électrique — Option Électrotechnique</div>
-      <div class="timeline-note">Mention : [ Très Bien / Bien ] · Rang : [ X / Y ] · Projet de fin d'études : [ titre ]</div>
+      <div class="timeline-year">2022 — 2025 (estimé)</div>
+      <div class="timeline-school">Institut Superieur de Tachnologie (IST)</div>
+      <div class="timeline-degree">Licence en Génie Électrique — Option Électrotechnique · Ouagadougou, Burkina Faso</div>
+      <div class="timeline-note">
+        <ul>
+          <li>Cours fondamentaux : circuits électriques, machines électriques, électronique de puissance, automatique</li>
+          <li>Projet de fin d'études : [ Titre de votre PFE ]</li>
+          <li>Mention : [ À compléter ]</li>
+        </ul>
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-year">[ ANNÉE ] — [ ANNÉE ]</div>
-      <div class="timeline-school">[ Lycée / Classe Prépa ]</div>
-      <div class="timeline-degree">Baccalauréat Scientifique — Série C / D</div>
-      <div class="timeline-note">Mention : [ ] · Classement : [ ]</div>
+      <div class="timeline-year">Parallèle aux études · 2022 — présent</div>
+      <div class="timeline-school" style="color:var(--gold)">Fablabs — Apprentissage Pratique Autonome</div>
+      <div class="timeline-degree">Orange Digital Center & Wakatlab · Ouagadougou</div>
+      <div class="timeline-note">
+        Environnement de recherche et d'expérimentation autodidacte :
+        prototypage, conception électronique, fabrication physique et itération sur projets réels.
+        Approche maker appliquée à des problématiques d'ingénierie concrètes.
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-year">En cours — 2025</div>
-      <div class="timeline-school" style="color:var(--red)">Master en IA Appliquée à l'Automatisation Industrielle</div>
-      <div class="timeline-degree">Candidature — Tsinghua University · Zhejiang University · HIT</div>
-      <div class="timeline-note">Programme CSC Scholarship · Domaine : Intelligent Manufacturing & Industrial AI</div>
+      <div class="timeline-year">En cours · 2026</div>
+      <div class="timeline-school" style="color:var(--red)">Candidature Master — Bourse CSC</div>
+      <div class="timeline-degree">IA Appliquée à l'Automatisation Industrielle</div>
+      <div class="timeline-note">
+        Universités cibles : Tsinghua University · Zhejiang University · Harbin Institute of Technology (HIT)
+      </div>
+    </div>
+  </div>
+
+  <div class="fablab-grid">
+    <div class="fablab-card">
+      <div class="fablab-card-logo">Orange Digital Center</div>
+      <div class="fablab-card-sub">Fablab · Ouagadougou</div>
+      <div class="fablab-card-desc">
+        Espace d'innovation numérique offrant accès à des équipements de prototypage
+        (imprimantes 3D, découpe laser, électronique). J'y ai développé mes projets
+        de conception mécatronique dans un environnement collaboratif orienté création.
+      </div>
+    </div>
+    <div class="fablab-card">
+      <div class="fablab-card-logo">Wakatlab</div>
+      <div class="fablab-card-sub">Fablab · Ouagadougou</div>
+      <div class="fablab-card-desc">
+        Fablab local centré sur l'innovation technologique africaine.
+        Lieu d'expérimentation et d'échanges techniques où j'ai renforcé
+        mes compétences en électronique embarquée et en conception de systèmes physiques.
+      </div>
     </div>
   </div>
 </section>
@@ -761,68 +568,56 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
-    <div class="section-label" style="text-align:center; display:block;">04 — Contact</div>
-    <h2 class="contact-big">Let's Build<br><span style="color:var(--red)">The Future</span><br>Together.</h2>
+    <div class="section-label" style="text-align:center;display:block">04 — Contact</div>
+    <h2 class="contact-big">Construisons<br><span style="color:var(--red)">l'industrie</span><br>de demain.</h2>
     <p class="contact-sub">
-      Open to research collaborations, lab internships, and academic opportunities
-      in AI, automation, and intelligent systems — particularly in Chinese institutions.
+      Ouvert aux opportunités académiques, collaborations de recherche
+      et programmes de master en IA & automatisation industrielle —
+      en particulier dans les universités chinoises (programme CSC).
     </p>
-    <a href="mailto:votre.email@example.com" class="btn btn-solid">Send a Message</a>
-
+    <a href="mailto:mubaraknana016@gmail.com" class="btn btn-solid">Envoyer un message</a>
     <div class="contact-items">
-      <a href="mailto:votre.email@example.com" class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        votre.email@example.com
+      <a href="mailto:mubaraknana016@gmail.com" class="contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        mubaraknana016@gmail.com
       </a>
       <a href="https://github.com/votre-username" class="contact-item" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         github.com/votre-username
       </a>
       <a href="https://linkedin.com/in/votre-profil" class="contact-item" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
       <span class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Ouagadougou, Burkina Faso
       </span>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-copy">© 2025 NANA Abdoul Salam Moubarak — All Rights Reserved</div>
-  <div class="footer-mark">Electrical Engineer → AI & Industrial Automation</div>
+  <div class="footer-copy">© 2025 NANA Abdoul Salam Moubarak</div>
+  <div class="footer-mark">Génie Électrique → Mécatronique → IA Industrielle</div>
 </footer>
 
 <script>
-  // Filter projects
   function filterProjects(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.project-card').forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
     });
   }
-
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.project-card, .timeline-item, .stat').forEach(el => {
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.project-card, .timeline-item, .stat, .fablab-card, .roadmap-item').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
+    el.style.transform = 'translateY(28px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
